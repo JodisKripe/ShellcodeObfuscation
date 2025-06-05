@@ -8,15 +8,18 @@ def xor_cipher(data, key):
     """Encrypts or decrypts data using XOR cipher with a given key."""
     return bytes([b ^ key for b in data])
 
-with open('shell_org.bin',"rb") as f:
-    shell_org = f.read()
-    print(shell_org)
 
-# Shift value
-shift_value = 15
+if(__name__ == "__main__"):
+    with open('shell_org.bin',"rb") as f:
+        shell_org = f.read()
+        print(shell_org)
 
-# Encrypt the shellcode
-shell_encrypted = xor_cipher(shell_org, shift_value)
-# Write the encrypted shellcode to a file
-with open('shell.bin', 'wb') as f:
-    f.write(shell_encrypted)
+    # Shift value
+    shift_value = 15
+
+    # Encrypt the shellcode
+    shell_encrypted = xor_cipher(shell_org, shift_value)
+    # Write the encrypted shellcode to a file
+    print(shell_encrypted)
+    with open('shell.bin', 'wb') as f:
+        f.write(shell_encrypted)
